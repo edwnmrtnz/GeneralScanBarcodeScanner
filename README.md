@@ -1,2 +1,2 @@
 # GeneralScanBarcodeScanner
-A Simple helper for GeneralScan Barcode scanner Bluetooth feature.
+A Simple helper for GeneralScan Barcode scanner's Bluetooth feature.
