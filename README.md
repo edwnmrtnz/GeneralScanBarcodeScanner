@@ -18,7 +18,7 @@ public class ScannerApplication extends Application {
 }
 ```
 
-Inside your manifest file, add the following permissions
+Inside your manifest file, add the following permissions:
 
 ```xml****
 <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -28,20 +28,20 @@ Inside your manifest file, add the following permissions
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 ```
 
-then add this service inside <application> block of your manifest.
+Add this Service inside the <application> block of your manifest.
 
 ```xml
 <service android:name="com.generalscan.bluetooth.connect.ATService"
          android:enabled="true"/>
 ```
 
-To connect to barcode scanner, first you must select the device using this method.
+To connect to your barcode scanner, select your device through
 
 ```java
 BarcodeScannerHelper.getInstance().selectScanner();
 ```
 
-After selection of device, call
+After selecting a device, call connectScanner from BarcodeScannerHelper and implment the BarcodeScannerConnectionListner.
 
 ```java
 BarcodeScannerHelper.getInstance().connectScanner(new BarcodeScannerConnectionListener() {
@@ -58,20 +58,20 @@ BarcodeScannerHelper.getInstance().connectScanner(new BarcodeScannerConnectionLi
       });
 ```
 
-To start receiving data, Add this line in your Activity's onStart to start broadcastreceiver.
-
+To start receiving data, you need to start the broadcast receiver. Just call startBarcodeBroacastReceiver() of the BarcodeScannerHelper and implement a BarcodeDataListener.
+You can call this inside onCreate() or onStart() of your activity.
 ```java
 BarcodeScannerHelper.getInstance().startBarcodeBrodcastReceiver(context);
-
-       BarcodeScannerHelper.getInstance().setOnBarcodeDataListener(new BarcodeDataListener() {
-           @Override
-           public void onDataReceived(String data) {
-             toast("Scanned data: " + data);
-           }
-       });
+BarcodeScannerHelper.getInstance().setOnBarcodeDataListener(new BarcodeDataListener() {
+    @Override
+    public void onDataReceived(String data) {
+      toast("Scanned data: " + data);
+    }
+});
 ```
 
-Don't forget to stop the broadcastreceiver in your Activity's onStop
+To stop receiving data, just call stopBarcodeBroadcastReceiver(). You can call this inside
+onStop() or onDestroy() of your activity.
 
 ```java
 BarcodeScannerHelper.getInstance().stopBarcodeBroadcastReceiver(context);
