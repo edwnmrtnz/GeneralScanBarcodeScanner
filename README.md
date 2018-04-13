@@ -1,9 +1,27 @@
 # GeneralScanBarcodeScanner
-
 ### Summary
 A Simple helper for GeneralScan barcode scanner.
 
-### How to use
+### Prerequisites
+Add this in your root build.gradle file (not your module build.gradle file):
+
+```gradle
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+### Dependency
+Add this to your module's build.gradle file (make sure the version matches the JitPack badge above):
+```gradle
+dependencies {
+	compile 'com.github.edwnmrtnz:GeneralScanBarcodeScanner:v0.1.0'
+}
+```
+
+### Usage
 Create a class that extends Application and create a newInstance of BarcodeScannerHelper.
 
 ```java
