@@ -2,13 +2,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.edwnmrtnz.generalscanbarcodescanner">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <!-- Show Alert Dialog in Service -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+
     <application
+        android:name=".ScannerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <service android:name="com.generalscan.bluetooth.connect.ATService"
+            android:enabled="true"/>
+
+
         <activity android:name="com.github.edwnmrtnz.generalscanbarcodescanner.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
